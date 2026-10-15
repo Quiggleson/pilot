@@ -13,6 +13,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     The first quiggleson.com sub-app. It lives in its own repo, is served by its own Cloudflare
     Worker, and installs as its own app.
   </p>
+  <p>Oct 15 test</p>
 
   <dl class="status">
     <dt>Network</dt>
