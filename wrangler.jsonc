@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pilot",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  },
+  // quiggleson.com and www are Custom Domains on the portfolio Worker, which makes it the origin
+  // for every path. These routes run first. Each hostname needs both the bare path and the
+  // wildcard, because /pilot/* does not match /pilot.
+  "routes": [
+    { "pattern": "quiggleson.com/pilot", "zone_name": "quiggleson.com" },
+    { "pattern": "quiggleson.com/pilot/*", "zone_name": "quiggleson.com" },
+    { "pattern": "www.quiggleson.com/pilot", "zone_name": "quiggleson.com" },
+    { "pattern": "www.quiggleson.com/pilot/*", "zone_name": "quiggleson.com" }
+  ]
+}
