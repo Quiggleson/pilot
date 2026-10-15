@@ -8,7 +8,7 @@ interface BeforeInstallPromptEvent extends Event {
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <main>
-  <h1>Hello from <code>/pilot</code></h1>
+  <h1>Hello again from <code>/pilot</code></h1>
   <p>
     The first quiggleson.com sub-app. It lives in its own repo, is served by its own Cloudflare
     Worker, and installs as its own app.
