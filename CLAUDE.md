@@ -154,7 +154,7 @@ wrangler.jsonc       Worker name, assets directory, the four routes
 
 - [x] Repo created under `Quiggleson/`, PR-only: protect `main`, require a PR before merge, include admins.
 - [x] `wrangler.jsonc` routes for all four patterns above.
-- [ ] Cloudflare API token in repo secrets if deploys are automated on merge. (Automated on merge: add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as Actions secrets.)
+- [x] Cloudflare API token in repo secrets if deploys are automated on merge. (Automated on merge: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are repository Actions secrets.)
 - [x] Manifest and service worker scoped to `/pilot/`.
 - [ ] Verified installable from `https://www.quiggleson.com/pilot` on a phone.
 - [ ] Linked from the portfolio home page preview list.
