@@ -19,8 +19,9 @@ This repo is edited by coding agents driven from Slack. The human is the gate.
   `enforce_admins`, so a push is rejected even with the owner's token.
 - **Deploys happen on merge.** [.github/workflows/deploy.yml](.github/workflows/deploy.yml) runs
   `npm run deploy` and the production smoke checks whenever `main` changes, so the human's merge
-  is the deploy decision. Agents still never run `npm run deploy` or `wrangler deploy` directly;
-  an agent's job ends at the PR.
+  is the deploy decision. When the human asks, an agent may run or re-run the Deploy workflow
+  (e.g. after a failed run) and report the result from its logs. Deploys always go through that
+  workflow: agents never run `npm run deploy` or `wrangler deploy` directly.
 - **Never add `Co-Authored-By` lines** to commit messages.
 - **Never remove checklist items** from a PR template; leave unchecked boxes in place.
 - Branch names: `slack/<short-slug>` for Slack-driven work, `fix/<slug>` or `feat/<slug>` otherwise.
