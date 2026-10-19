@@ -17,8 +17,10 @@ This repo is edited by coding agents driven from Slack. The human is the gate.
 
 - **Never push to `main`.** Work on a branch, commit, open a PR. `main` is protected with
   `enforce_admins`, so a push is rejected even with the owner's token.
-- **Never deploy.** `npm run deploy`, `wrangler deploy`, and anything that publishes are the
-  human's to run. An agent's job ends at the PR.
+- **Deploys happen on merge.** [.github/workflows/deploy.yml](.github/workflows/deploy.yml) runs
+  `npm run deploy` and the production smoke checks whenever `main` changes, so the human's merge
+  is the deploy decision. Agents still never run `npm run deploy` or `wrangler deploy` directly;
+  an agent's job ends at the PR.
 - **Never add `Co-Authored-By` lines** to commit messages.
 - **Never remove checklist items** from a PR template; leave unchecked boxes in place.
 - Branch names: `slack/<short-slug>` for Slack-driven work, `fix/<slug>` or `feat/<slug>` otherwise.
@@ -96,7 +98,7 @@ npm run typecheck  # tsc only
 npm run preview    # build, then serve dist/ through a local Worker at http://localhost:8787/pilot/
 npm run smoke      # route/manifest/SW checks; defaults to production, or pass an origin:
                    #   npm run smoke -- http://localhost:8787
-npm run deploy     # HUMAN ONLY — publishes to quiggleson.com/pilot
+npm run deploy     # publishes to quiggleson.com/pilot; CI runs it on merge to main
 ```
 
 There is no test suite. `npm run preview` + `npm run smoke -- http://localhost:8787` is the check
@@ -151,7 +153,7 @@ wrangler.jsonc       Worker name, assets directory, the four routes
 
 - [x] Repo created under `Quiggleson/`, PR-only: protect `main`, require a PR before merge, include admins.
 - [x] `wrangler.jsonc` routes for all four patterns above.
-- [ ] Cloudflare API token in repo secrets if deploys are automated on merge. (Not automated; deploys are manual.)
+- [ ] Cloudflare API token in repo secrets if deploys are automated on merge. (Automated on merge: add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as Actions secrets.)
 - [x] Manifest and service worker scoped to `/pilot/`.
 - [ ] Verified installable from `https://www.quiggleson.com/pilot` on a phone.
 - [ ] Linked from the portfolio home page preview list.
